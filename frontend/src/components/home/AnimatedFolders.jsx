@@ -134,7 +134,7 @@ const AnimatedFolder = ({
       {/* Papers */}
       {[0, 1, 2].map((i) => {
         const sizeCls =
-          i === 0 ? 'w-130 h-48' : i === 1 ? 'w-130 h-52' : 'w-130 h-56';
+          i === 0 ? 'w-130 h-48' : i === 1 ? 'w-150 h-52' : 'w-150 h-56';
         const bgColor = i === 0 ? '#f0f0f0' : i === 1 ? '#f8f8f8' : '#ffffff';
 
         return (
@@ -147,7 +147,7 @@ const AnimatedFolder = ({
               top: '10%',
               transform: 'translateX(-50%)',
               zIndex: zIndex - 5 + i,
-              willChange: 'transform', // Optimización GPU
+              willChange: 'transform', 
             }}
             onMouseMove={(e) => !isMobile && handlePaperMouseMove(e, i)}
             onMouseLeave={(e) => !isMobile && handlePaperMouseLeave(e, i)}
@@ -173,8 +173,8 @@ const AnimatedFolder = ({
                 src={images[i]}
                 alt={`${title} imagen ${i + 1}`}
                 className="object-cover w-full h-full"
-                loading="lazy" // Optimización: lazy loading
-                decoding="async" // Optimización: decodificación asíncrona
+                loading="lazy" 
+                decoding="async"
               />
             ) : (
               <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">

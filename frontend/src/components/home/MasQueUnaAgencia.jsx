@@ -6,7 +6,7 @@ const MasQueUnaAgencia = () => {
   // Componente interno para el texto con círculo
   const DrawCircleText = () => (
     <span className="relative inline-block align-baseline">
-      inteligencia artificial
+      inteligencia artificial   
       <svg
         viewBox="0 0 286 73"
         fill="none"
@@ -25,7 +25,7 @@ const MasQueUnaAgencia = () => {
   );
 
   return (
-    <section className="py-16 px-8 bg-gray-50">
+    <section className="py-24 px-8 bg-[#eeeeee]">
       {/* Título superior */}
       <h1 className="text-center text-5xl font-bold mb-12">
         MÁS QUE UNA AGENCIA....
