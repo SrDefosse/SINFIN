@@ -1,15 +1,14 @@
-
-import './App.css'
 import Navbar from './components/layout/Navbar'
-import Hero from './components/home/Hero'
 import AnimatedFolders from './components/home/AnimatedFolders'
+import Hero from './components/home/Hero'
 import MasQueUnaAgencia from './components/home/MasQueUnaAgencia'
 
 function App() {
 
+
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div>
         <Hero />
       </div>

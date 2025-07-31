@@ -230,7 +230,7 @@ export default function AnimatedFolders() {
           </div>
           <div className="ml-8">
             <img
-              src="/emblem_blue.png"
+              src="/emblem_blue.webp"
               alt="Sinfín logo"
               className="w-48 h-48 object-contain rotate-20"
               loading="lazy" // Optimización: lazy loading

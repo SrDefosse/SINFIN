@@ -36,7 +36,7 @@ const MasQueUnaAgencia = () => {
         {/* IZQUIERDA: logo (imagen) */}
         <div className="flex-shrink-0">
           <img
-            src="/typologo_blue.png"
+            src="/typologo_blue.webp"
             alt="SINFiN Creative Company"
             className="h-24 md:h-32 object-contain"
           />

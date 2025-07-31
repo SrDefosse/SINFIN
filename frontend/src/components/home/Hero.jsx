@@ -26,7 +26,7 @@ const Hero = () => {
               animate={{ y: 0 }}
               exit={{ y: "-120%" }}
               staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden"
+              splitLevelClassName="overflow-hidden pb-2"
               animatePresenceMode="popLayout"
               transition={{ 
                 type: "spring", 
