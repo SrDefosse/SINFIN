@@ -13,7 +13,7 @@ const Hero = () => {
               transition={{ 
                 type: "spring", 
                 damping: 15, 
-                stiffness: 150
+                stiffness: 100
               }}
             >
               Somos un <span className='font-bold'> SINFIN </span> de
@@ -26,15 +26,14 @@ const Hero = () => {
               animate={{ y: 0 }}
               exit={{ y: "-120%" }}
               staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden pb-4"
+              splitLevelClassName="overflow-hidden"
               animatePresenceMode="popLayout"
               transition={{ 
                 type: "spring", 
                 damping: 15, 
-                stiffness: 150,
-                layout: { type: "spring", damping: 15, stiffness: 150 }
+                stiffness: 100
               }}
-              rotationInterval={2500}
+              rotationInterval={3000}
             />
           </LayoutGroup>
         </h1>

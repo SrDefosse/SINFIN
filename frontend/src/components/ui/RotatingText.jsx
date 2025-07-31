@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function cn(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -151,33 +151,56 @@ const RotatingText = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (!auto) return;
-    const intervalId = setInterval(next, rotationInterval);
-    return () => clearInterval(intervalId);
+    
+    let intervalId;
+    let isVisible = !document.hidden;
+    
+    const startInterval = () => {
+      if (isVisible) {
+        intervalId = setInterval(next, rotationInterval);
+      }
+    };
+    
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden;
+      if (isVisible) {
+        startInterval();
+      } else {
+        clearInterval(intervalId);
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    startInterval();
+    
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [next, rotationInterval, auto]);
 
   return (
-    <LayoutGroup>
-      <motion.span
-        className={cn(
-          "flex flex-wrap whitespace-pre-wrap relative items-center",
-          mainClassName
-        )}
-        {...rest}
-        layout
-        transition={transition}
-      >
-        <span className="sr-only">{texts[currentTextIndex]}</span>
-        <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-          <motion.span
-            key={currentTextIndex}
-            className={cn(
-              splitBy === "lines"
-                ? "flex flex-col w-full"
-                : "flex flex-wrap whitespace-pre-wrap relative"
-            )}
-            layout
-            aria-hidden="true"
-          >
+    <motion.span
+      className={cn(
+        "flex flex-wrap whitespace-pre-wrap relative",
+        mainClassName
+      )}
+      {...rest}
+      layout
+      transition={transition}
+    >
+      <span className="sr-only">{texts[currentTextIndex]}</span>
+      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
+        <motion.span
+          key={currentTextIndex}
+          className={cn(
+            splitBy === "lines"
+              ? "flex flex-col w-full"
+              : "flex flex-wrap whitespace-pre-wrap relative"
+          )}
+          layout
+          aria-hidden="true"
+        >
           {elements.map((wordObj, wordIndex, array) => {
             const previousCharsCount = array
               .slice(0, wordIndex)
@@ -207,9 +230,8 @@ const RotatingText = forwardRef((props, ref) => {
             );
           })}
         </motion.span>
-        </AnimatePresence>
-      </motion.span>
-    </LayoutGroup>
+      </AnimatePresence>
+    </motion.span>
   );
 });
 
