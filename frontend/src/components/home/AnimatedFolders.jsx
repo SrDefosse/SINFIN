@@ -246,7 +246,7 @@ const FoldersSection = () => {
       <div className="w-full px-4 sm:px-8 pb-12">
         <div className="relative w-full h-64 md:h-80">
           <AnimatedFolder
-            title="ANA MAHLER"
+            title="GRUPO STOEVER"
             color="#a0aec0"
             backgroundColor="#cbd5e0"
             images={[
@@ -273,8 +273,8 @@ const FoldersSection = () => {
 
           <AnimatedFolder
             title="GRUPO VISIÓN"
-            color="#f6e05e"
-            backgroundColor="#ecc94b"
+            color="#68d391"
+            backgroundColor="#9ae6b4"
             images={[
               '/placeholder.svg?height=200&width=300',
               '/placeholder.svg?height=200&width=300',
@@ -282,6 +282,19 @@ const FoldersSection = () => {
             ]}
             zIndex={3}
             folderIndex={2}
+          />
+
+          <AnimatedFolder
+            title="MT3"
+            color="#ecc94b"
+            backgroundColor="#f6e05e"
+            images={[
+              '/placeholder.svg?height=200&width=300',
+              '/placeholder.svg?height=200&width=300',
+              '/placeholder.svg?height=200&width=300',
+            ]}
+            zIndex={3}
+            folderIndex={3}
           />
         </div>
       </div>
