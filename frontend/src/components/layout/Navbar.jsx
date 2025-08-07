@@ -50,7 +50,7 @@ const ResponsiveNavbar = () => {
       <div className="flex items-center justify-between w-[90%] mx-auto">
         {/* Logo - Izquierda */}
         <motion.div 
-          className="flex-shrink-0"
+          className="flex-shrink-0 rounded-xl border border-white/10 bg-[#22314c]/40 backdrop-blur-md p-2"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >

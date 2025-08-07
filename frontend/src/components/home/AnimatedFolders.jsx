@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import EncryptButton from '../ui/EncryptButton';
 
 const AnimatedFolder = ({
   title,
@@ -215,7 +216,8 @@ const AnimatedFolder = ({
   );
 };
 
-export default function AnimatedFolders() {
+// Separate Folders Section - Contains only folders and header
+const FoldersSection = () => {
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       {/* Header */}
@@ -283,20 +285,28 @@ export default function AnimatedFolders() {
           />
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Discover More Button */}
-      <div className="w-full px-8 pb-12">
+// Separate Button Section - Completely independent from folders
+const ButtonSection = () => {
+  return (
+    <div className="w-full bg-gradient-to-b from-gray-50 to-white flex items-center justify-center pb-16">
+      <div className="w-full px-8">
         <div className="max-w-7xl mx-auto flex justify-end">
-          <motion.button
-            className="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold flex items-center gap-2"
-            whileHover={{ scale: 1.05, backgroundColor: '#1a202c' }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            🔒 DESCUBRE MÁS
-          </motion.button>
+          <EncryptButton text="DESCUBRE MÁS" />
         </div>
       </div>
     </div>
+  );
+};
+
+export default function AnimatedFolders() {
+  return (
+    <>
+      <FoldersSection />
+      <ButtonSection />
+    </>
   );
 }
