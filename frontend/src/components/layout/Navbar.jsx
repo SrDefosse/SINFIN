@@ -14,6 +14,19 @@ const ResponsiveNavbar = () => {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
+  // Función para scroll suave a secciones
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    // Cerrar menú móvil si está abierto
+    setIsMenuOpen(false);
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -64,11 +77,10 @@ const ResponsiveNavbar = () => {
         
         {/* Desktop Navigation - Derecha */}
         <nav className="hidden lg:flex items-center gap-8 rounded-xl border border-white/20 bg-[#22314c]/80 backdrop-blur-md px-8 py-4 text-base text-neutral-300 shadow-lg">
-          <NavLink>Work</NavLink>
-          <NavLink>About</NavLink>
-          <NavLink>Services</NavLink>
-          <NavLink>Contact</NavLink>
-          <JoinButton />
+          <NavLink onClick={() => scrollToSection('our-work')}>Our Work</NavLink>
+          <NavLink onClick={() => scrollToSection('services')}>Services</NavLink>
+          <NavLink onClick={() => scrollToSection('gallery')}>Gallery</NavLink>
+          <JoinButton onClick={() => scrollToSection('lets-talk')} />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -105,12 +117,11 @@ const ResponsiveNavbar = () => {
             className="lg:hidden absolute top-full left-4 right-4 mt-2 rounded-xl border border-white/20 bg-[#22314c]/95 backdrop-blur-md shadow-2xl"
           >
             <div className="flex flex-col items-center gap-4 px-6 py-6">
-              <MobileNavLink onClick={() => setIsMenuOpen(false)}>Work</MobileNavLink>
-              <MobileNavLink onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
-              <MobileNavLink onClick={() => setIsMenuOpen(false)}>Services</MobileNavLink>
-              <MobileNavLink onClick={() => setIsMenuOpen(false)}>Contact</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('our-work')}>Our Work</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('services')}>Services</MobileNavLink>
+              <MobileNavLink onClick={() => scrollToSection('gallery')}>Gallery</MobileNavLink>
               <div className="w-full pt-4 border-t border-white/10">
-                <JoinButton mobile />
+                <JoinButton mobile onClick={() => scrollToSection('lets-talk')} />
               </div>
             </div>
           </motion.div>
@@ -120,9 +131,9 @@ const ResponsiveNavbar = () => {
   );
 };
 
-const NavLink = ({ children }) => {
+const NavLink = ({ children, onClick }) => {
   return (
-    <a href="#" rel="nofollow" className="block overflow-hidden">
+    <button onClick={onClick} className="block overflow-hidden cursor-pointer bg-transparent border-none p-0">
       <motion.div
         whileHover={{ y: -20 }}
         transition={{ ease: "backInOut", duration: 0.5 }}
@@ -133,26 +144,24 @@ const NavLink = ({ children }) => {
           {children}
         </span>
       </motion.div>
-    </a>
+    </button>
   );
 };
 
 const MobileNavLink = ({ children, onClick }) => {
   return (
-    <motion.a 
-      href="#" 
-      rel="nofollow" 
-      className="block text-neutral-300 hover:text-neutral-50 transition-colors duration-200 text-lg font-medium py-2"
+    <motion.button 
+      className="block text-neutral-300 hover:text-neutral-50 transition-colors duration-200 text-lg font-medium py-2 bg-transparent border-none cursor-pointer"
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
       {children}
-    </motion.a>
+    </motion.button>
   );
 };
 
-const JoinButton = ({ mobile = false }) => {
+const JoinButton = ({ mobile = false, onClick }) => {
   const baseClasses = `
     relative z-0 flex items-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border-[1px] 
     border-white/30 font-medium text-neutral-300 transition-all duration-300
@@ -174,7 +183,7 @@ const JoinButton = ({ mobile = false }) => {
     : "px-6 py-2 text-base";
 
   return (
-    <button className={`${baseClasses} ${mobileClasses} cursor-pointer`}>
+    <button onClick={onClick} className={`${baseClasses} ${mobileClasses} cursor-pointer`}>
       Let's talk
     </button>
   );

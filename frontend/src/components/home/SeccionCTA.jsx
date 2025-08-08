@@ -2,7 +2,7 @@ import React from 'react';
 
 const SeccionCTA = () => {
   return (
-    <section className="bg-[#CBD9EB] py-20 min-h-[500px]">
+    <section id="lets-talk" className="bg-[#CBD9EB] py-20 min-h-[500px]">
       <div className="max-w-6xl mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-15 items-center h-full text-center md:text-left">
           <div className="text-[#2C3E50]">
@@ -18,8 +18,11 @@ const SeccionCTA = () => {
               Nuestro enfoque combina creatividad con 
               visión estratégica para impulsar su marca.
             </p>
-            <button className="bg-[#34495E] text-white px-8 py-4 rounded-full text-base font-semibold cursor-pointer transition-all duration-300 tracking-wide hover:bg-[#2C3E50] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#34495E]/30">
-              COMENCEMOS....
+            <button
+              className="bg-[#34495E] text-white px-8 py-4 rounded-full text-base font-semibold cursor-pointer transition-all duration-300 tracking-wide hover:bg-[#2C3E50] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#34495E]/30"
+              onClick={() => window.open("https://wa.me/5214774335060?text=¡Hola%20SINFIN!%20Me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20creativos%20y%20digitales.%20¿Podrían%20ayudarme%20con%20mi%20proyecto?", "_blank")}
+            >
+              COMENCEMOS...
             </button>
           </div>
           <div className="flex justify-center items-center">

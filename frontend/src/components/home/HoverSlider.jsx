@@ -162,7 +162,7 @@ import React, {
   
   // Componente demo que exportas por defecto
   const HoverSliderDemo = () => (
-    <HoverSlider className="min-h-screen flex flex-col items-center justify-center p-6 md:px-32 bg-[#faf9f5] text-[#3d3929]">
+    <HoverSlider id="services" className="min-h-screen flex flex-col items-center justify-center p-6 md:px-32 bg-[#faf9f5] text-[#3d3929]">
       <h2 className="mb-6 text-black text-4xl font-bold text-center py-10">
         SERVICIOS
       </h2>

@@ -219,7 +219,7 @@ const AnimatedFolder = ({
 // Separate Folders Section - Contains only folders and header
 const FoldersSection = () => {
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <div id="our-work" className="w-full min-h-screen bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       {/* Header */}
       <div className="w-full px-8 py-12">
         <div className="max-w-7xl mx-auto flex items-start justify-between">
@@ -308,7 +308,7 @@ const ButtonSection = () => {
     <div className="w-full bg-gradient-to-b from-gray-50 to-white flex items-center justify-center pb-16">
       <div className="w-full px-8">
         <div className="max-w-7xl mx-auto flex justify-end">
-          <EncryptButton text="DESCUBRE MÁS" />
+          <EncryptButton text="DESCUBRE MÁS" url="https://www.instagram.com/sinfin.cc/" />
         </div>
       </div>
     </div>

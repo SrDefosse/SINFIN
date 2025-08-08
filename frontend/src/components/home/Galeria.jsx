@@ -53,7 +53,7 @@ const InteractiveSelector = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#22314c] font-sans text-white px-2 sm:px-0">
+    <div id="gallery" className="relative flex flex-col items-center justify-center min-h-screen bg-[#22314c] font-sans text-white px-2 sm:px-0">
       {/* Header Section */}
       <div className="w-full max-w-2xl px-4 sm:px-6 mt-4 sm:mt-8 mb-2 text-center">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-2 sm:mb-3 tracking-tight drop-shadow-lg animate-fadeInTop delay-300">
