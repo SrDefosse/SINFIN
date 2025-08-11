@@ -61,11 +61,15 @@ const AnimatedFolder = ({
   const baseY = useMemo(() => folderIndex * 60, [folderIndex]);
   const baseX = useMemo(() => folderIndex * 20, [folderIndex]);
 
-  const openPos = useMemo(() => [
+  const openPos = useMemo(() => isMobile ? [
+    { x: -100, y: -40, rotate: -10 },
+    { x: 40, y: -40, rotate: 10 },
+    { x: -40, y: -60, rotate: 3 },
+  ] : [
     { x: -150, y: -80, rotate: -10 },
     { x: 60, y: -80, rotate: 10 },
     { x: -60, y: -100, rotate: 3 },
-  ], []);
+  ], [isMobile]);
 
   // Optimización: useCallback para evitar re-renders
   const handlePaperMouseMove = useCallback((e, idx) => {
@@ -96,8 +100,13 @@ const AnimatedFolder = ({
   // Handlers para eventos táctiles y click
   const handleFolderInteraction = useCallback(() => {
     if (isMobile) {
-      setIsOpen(!isOpen);
-      if (!isOpen) {
+      const nextIsOpen = !isOpen;
+      setIsOpen(nextIsOpen);
+      if (nextIsOpen) {
+        setIsModalOpen(true);
+      }
+
+      if (!nextIsOpen) {
         setPaperOffsets(Array.from({ length: 3 }, () => ({ x: 0, y: 0 })));
       }
     }
@@ -138,10 +147,7 @@ const AnimatedFolder = ({
         }
       }}
       // Eventos para móvil
-      onTap={() => {
-        handleFolderInteraction();
-        handleModalOpen();
-      }}
+      onTap={handleFolderInteraction}
       onClick={handleModalOpen} // Para Desktop
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
@@ -179,7 +185,7 @@ const AnimatedFolder = ({
               opacity: isOpen ? 1 : 0.8,
             }}
             transition={{ duration: 0.4, ease: 'easeInOut' }}
-            whileHover={{ scale: isOpen ? 1.05 : 0.9 }}
+            whileHover={!isMobile ? { scale: isOpen ? 1.05 : 0.9 } : {}}
             whileTap={{ scale: isOpen ? 1.02 : 0.88 }}
           >
             {images[i] ? (
@@ -263,7 +269,7 @@ const FoldersSection = () => {
 
       {/* Folders Section */}
       <div className="w-full px-4 sm:px-8 pb-12">
-        <div className="relative w-full h-64 md:h-80">
+        <div className="relative w-full min-h-[600px] md:h-[450px]">
           <AnimatedFolder
             title="GRUPO STOEVER"
             color="#a0aec0"
