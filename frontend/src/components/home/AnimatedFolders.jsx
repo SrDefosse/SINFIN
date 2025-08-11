@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import EncryptButton from '../ui/EncryptButton';
+import ImageModal from '../ui/ImageModal';
 
 const AnimatedFolder = ({
   title,
@@ -16,6 +17,7 @@ const AnimatedFolder = ({
     Array.from({ length: 3 }, () => ({ x: 0, y: 0 }))
   );
   const [isMobile, setIsMobile] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const folderRef = useRef(null);
 
   // Detectar dispositivos móviles
@@ -48,6 +50,12 @@ const AnimatedFolder = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMobile, isOpen]);
+
+  const handleModalOpen = () => {
+    // No queremos que el hover normal abra el modal, solo el click/tap
+    if (!isOpen) return;
+    setIsModalOpen(true);
+  };
 
   // Optimización: Memoizar cálculos que no cambian
   const baseY = useMemo(() => folderIndex * 60, [folderIndex]);
@@ -111,6 +119,7 @@ const AnimatedFolder = ({
   }, [isOpen, isMobile]);
 
   return (
+    <>
     <motion.div
       ref={folderRef}
       className={`absolute w-full h-40 cursor-pointer ${className}`}
@@ -129,7 +138,11 @@ const AnimatedFolder = ({
         }
       }}
       // Eventos para móvil
-      onTap={handleFolderInteraction}
+      onTap={() => {
+        handleFolderInteraction();
+        handleModalOpen();
+      }}
+      onClick={handleModalOpen} // Para Desktop
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       {/* Papers */}
@@ -145,7 +158,7 @@ const AnimatedFolder = ({
             style={{
               backgroundColor: bgColor,
               left: '50%',
-              top: '10%',
+              top: '5%',
               transform: 'translateX(-50%)',
               zIndex: zIndex - 5 + i,
               willChange: 'transform', 
@@ -213,6 +226,12 @@ const AnimatedFolder = ({
         transition={{ duration: 0.3 }}
       />
     </motion.div>
+    <ImageModal 
+        images={images}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+    />
+    </>
   );
 };
 
@@ -250,9 +269,9 @@ const FoldersSection = () => {
             color="#a0aec0"
             backgroundColor="#cbd5e0"
             images={[
-              '/placeholder.svg?height=200&width=300',
-              '/placeholder.svg?height=200&width=300',
-              '/placeholder.svg?height=200&width=300',
+              '/folders/stoever/stoever1.webp?height=200&width=300',
+              '/folders/stoever/stoever2.webp?height=200&width=300',
+              '/folders/stoever/stoever3.webp?height=200&width=300',
             ]}
             zIndex={3}
             folderIndex={0}
@@ -263,9 +282,9 @@ const FoldersSection = () => {
             color="#4a5568"
             backgroundColor="#2d3748"
             images={[
-              '/placeholder.svg?height=200&width=300',
-              '/placeholder.svg?height=200&width=300',
-              '/placeholder.svg?height=200&width=300',
+              '/folders/ade/ade1.webp?height=200&width=300',
+              '/folders/ade/ade2.webp?height=200&width=300',
+              '/folders/ade/ade3.webp?height=200&width=300',
             ]}
             zIndex={3}
             folderIndex={1}
@@ -289,7 +308,7 @@ const FoldersSection = () => {
             color="#ecc94b"
             backgroundColor="#f6e05e"
             images={[
-              '/placeholder.svg?height=200&width=300',
+              '/folders/?height=200&width=300',
               '/placeholder.svg?height=200&width=300',
               '/placeholder.svg?height=200&width=300',
             ]}

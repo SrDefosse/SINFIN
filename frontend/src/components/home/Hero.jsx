@@ -33,7 +33,7 @@ const Hero = () => {
                 damping: 15, 
                 stiffness: 100
               }}
-              rotationInterval={3000}
+              rotationInterval={1400}
             />
           </LayoutGroup>
         </h1>

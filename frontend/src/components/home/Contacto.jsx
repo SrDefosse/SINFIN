@@ -86,7 +86,7 @@ const Contacto = () => {
                   <MdEmail size={24} />
                 </div>
                 <div>
-                  <a href="mailto:info@sinfin.com" className="text-[#22314c] text-lg font-medium leading-6 no-underline hover:text-[#1a252f] hover:underline transition-all duration-300">info@sinfin.com</a>
+                  <a href="mailto:hello@sinfin.com" className="text-[#22314c] text-lg font-medium leading-6 no-underline hover:text-[#1a252f] hover:underline transition-all duration-300">info@sinfin.com</a>
                 </div>
               </div>
               
@@ -167,22 +167,18 @@ const Contacto = () => {
               </div>
               
               <div className="mb-8">
-                <label className="flex items-center cursor-pointer text-base text-[#22314c] relative leading-tight">
+                <label className="flex items-center gap-2 cursor-pointer text-base text-[#22314c] leading-tight select-none">
                   <input
                     type="checkbox"
                     name="aceptaTerminos"
                     checked={formData.aceptaTerminos}
                     onChange={handleChange}
-                    className="opacity-0 absolute w-0 h-0"
+                    className="peer sr-only"
                   />
-                  <span className={`w-5 h-5 border-2 border-[#22314c] rounded mr-2 relative transition-all duration-300 bg-white flex-shrink-0 inline-flex items-center justify-center box-border align-middle hover:border-[#1a252f] hover:shadow-md ${
-                    formData.aceptaTerminos ? 'bg-[#22314c] border-[#22314c]' : ''
-                  } ${
-                    errors.aceptaTerminos ? 'focus:shadow-[0_0_0_3px_rgba(34,49,76,0.2)] focus:outline-2 focus:outline-[#22314c] focus:outline-offset-2' : ''
-                  }`}>
-                    {formData.aceptaTerminos && (
-                      <span className="absolute left-1 top-0 w-1.5 h-2.5 border-solid border-white border-r-2 border-b-2 transform rotate-45"></span>
-                    )}
+                  <span className="w-5 h-5 border-2 border-[#22314c] rounded relative grid place-content-center transition-all duration-200 bg-white hover:border-[#1a252f] peer-checked:bg-[#22314c] peer-checked:border-[#22314c]">
+                    <svg viewBox="0 0 20 20" className="w-3.5 h-3.5 text-white opacity-0 transition-opacity duration-200 pointer-events-none peer-checked:opacity-100" aria-hidden="true">
+                      <path d="M5 10l3 3 7-7" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </span>
                   Acepto Términos y condiciones
                 </label>
